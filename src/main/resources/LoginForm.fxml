@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.BorderPane?>
+<?import tornadofx.Field?>
+<?import tornadofx.Fieldset?>
+<?import tornadofx.Form?>
+
+<BorderPane layoutX="50.0" layoutY="30.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="255.0" prefWidth="466.0" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1">
+    <center>
+        <Form prefHeight="255.0" prefWidth="344.0" BorderPane.alignment="CENTER">
+            <children>
+                <Fieldset prefHeight="200.0" prefWidth="333.0">
+                    <children>
+                        <Field prefHeight="20.0" prefWidth="50.0" text="Username">
+                            <children>
+                                <TextField />
+                            </children>
+                        </Field>
+                        <Field prefHeight="20.0" prefWidth="50.0" text="Password">
+                            <children>
+                                <PasswordField />
+                            </children>
+                        </Field>
+                    </children>
+                </Fieldset>
+            </children>
+        </Form>
+    </center>
+</BorderPane>
