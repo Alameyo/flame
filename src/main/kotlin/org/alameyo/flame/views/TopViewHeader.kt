@@ -1,3 +1,5 @@
+package org.alameyo.flame.views
+
 import tornadofx.*
 
 class TopViewHeader: View() {
