@@ -5,6 +5,7 @@ import org.alameyo.flame.controllers.FlameController
 import tornadofx.*
 
 class MainView : View() {
+
     private val controller: FlameController by inject()
     private val usernameInput = SimpleStringProperty()
     private val domainInput = SimpleStringProperty()
@@ -37,11 +38,15 @@ class MainView : View() {
 
                     button("Connect") {
                         action {
-                            controller.connect(
-                                usernameInput.value,
-                                domainInput.value,
-                                passwordInput.value
-                            )
+                            runAsync {
+                                controller.connect(
+                                    usernameInput.value,
+                                    domainInput.value,
+                                    passwordInput.value
+                                )
+                            } ui {
+                                if (it) replaceWith<FlameApplicationView>()
+                            }
                         }
                     }
 

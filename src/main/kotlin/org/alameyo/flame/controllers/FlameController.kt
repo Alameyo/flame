@@ -2,8 +2,7 @@ package org.alameyo.flame.controllers
 
 import org.jivesoftware.smack.AbstractXMPPConnection
 import org.jivesoftware.smack.ConnectionConfiguration
-import org.jivesoftware.smack.ConnectionConfiguration.SecurityMode.*
-import org.jivesoftware.smack.ReconnectionManager
+import org.jivesoftware.smack.ConnectionConfiguration.SecurityMode.ifpossible
 import org.jivesoftware.smack.roster.Roster.getInstanceFor
 import org.jivesoftware.smack.tcp.XMPPTCPConnection
 import org.jivesoftware.smack.tcp.XMPPTCPConnectionConfiguration
@@ -13,9 +12,12 @@ import org.minidns.dnsname.DnsName.from
 import tornadofx.Controller
 
 class FlameController : Controller() {
-    lateinit var connectionConfiguration: XMPPTCPConnectionConfiguration
+
+    lateinit var rosterController: RosterController // maybe somehow could be made val
+
     lateinit var connection: AbstractXMPPConnection
-    lateinit var smackReconectionManager: ReconnectionManager
+
+    private lateinit var connectionConfiguration: XMPPTCPConnectionConfiguration
 
     private fun loadConnectionConfigurations(usernameInput: String?, domainInput: String?, passwordInput: String?) {
         connectionConfiguration = XMPPTCPConnectionConfiguration.builder()
@@ -30,25 +32,23 @@ class FlameController : Controller() {
             .build()
     }
 
-    fun connect(usernameInput: String?, domainInput: String?, passwordInput: String?) {
+    fun connect(usernameInput: String?, domainInput: String?, passwordInput: String?): Boolean {
         loadConnectionConfigurations(usernameInput, domainInput, passwordInput)
         connection = XMPPTCPConnection(connectionConfiguration)
         connection.connect()
         println("Connecting to the server $usernameInput@$domainInput")
         connection.login()
-        smackReconectionManager = ReconnectionManager.getInstanceFor(connection)
-        test(connection)
+        if(connection.isAuthenticated) {
+            afterLoginConfiguration(connection)
+        }
+        return connection.isAuthenticated
     }
 
     private fun resolveHostFromDns(domainInput: String?): DnsName? =
         resolveXMPPServiceDomain(from(domainInput), null, ConnectionConfiguration.DnssecMode.disabled)[0].fqdn
 
-    private fun test(connection: AbstractXMPPConnection) {
-        val roster = getInstanceFor(connection)
-        roster.reloadAndWait()
-        val entries = roster.entries
-        entries.forEach {
-            println(it.name)
-        }
+
+    private fun afterLoginConfiguration(connection: AbstractXMPPConnection) {
+        rosterController = RosterController(getInstanceFor(connection))
     }
 }
