@@ -1,7 +1,7 @@
 package org.alameyo.flame.views
 
+import javafx.scene.control.TabPane
 import org.alameyo.flame.controllers.FlameController
-import org.alameyo.flame.controllers.RosterController
 import org.jivesoftware.smack.roster.RosterEntry
 import tornadofx.*
 
@@ -26,6 +26,7 @@ class FlameApplicationView : View() {
                 tab("Rooms") {
 
                 }
+                tabClosingPolicy = TabPane.TabClosingPolicy.UNAVAILABLE
             }
         }
         center {
