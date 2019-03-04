@@ -12,6 +12,7 @@ repositories {
 dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8"
     compile 'no.tornado:tornadofx:1.7.17'
+    compile 'com.jfoenix:jfoenix:8.0.8'
     compile "org.igniterealtime.smack:smack-core:4.3.1"
     compile "org.igniterealtime.smack:smack-java7:4.3.1"
     compile "org.igniterealtime.smack:smack-im:4.3.1"
