@@ -1,5 +1,6 @@
 package org.alameyo.flame.controllers
 
+import org.alameyo.flame.controllers.settings.FlameConnectionConfigurationSettings
 import org.jivesoftware.smack.AbstractXMPPConnection
 import org.jivesoftware.smack.ConnectionConfiguration
 import org.jivesoftware.smack.ConnectionConfiguration.SecurityMode.ifpossible
@@ -14,17 +15,18 @@ import tornadofx.Controller
 class FlameController : Controller() {
 
     lateinit var rosterController: RosterController // maybe somehow could be made val
-
+    lateinit var connectionSettingsController: ConnectionSettingsController
     lateinit var connection: AbstractXMPPConnection
+    val flameConnectionConfiguartionSetting: FlameConnectionConfigurationSettings by inject()
 
     private lateinit var connectionConfiguration: XMPPTCPConnectionConfiguration
 
     private fun loadConnectionConfigurations(usernameInput: String?, domainInput: String?, passwordInput: String?) {
         connectionConfiguration = XMPPTCPConnectionConfiguration.builder()
-            .setResource("flame0")
+            .setResource(flameConnectionConfiguartionSetting.readResource())
             .setCompressionEnabled(false)
-            .setConnectTimeout(20_000)
-            .setPort(5222)
+            .setConnectTimeout(flameConnectionConfiguartionSetting.readTimeout().toInt())
+            .setPort(flameConnectionConfiguartionSetting.readPort().toInt())
             .setSecurityMode(ifpossible)
             .setUsernameAndPassword(usernameInput, passwordInput)
             .setHost(resolveHostFromDns(domainInput))
@@ -38,7 +40,7 @@ class FlameController : Controller() {
         connection.connect()
         println("Connecting to the server $usernameInput@$domainInput")
         connection.login()
-        if(connection.isAuthenticated) {
+        if (connection.isAuthenticated) {
             afterLoginConfiguration(connection)
         }
         return connection.isAuthenticated
