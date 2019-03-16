@@ -15,18 +15,17 @@ import tornadofx.Controller
 class FlameController : Controller() {
 
     lateinit var rosterController: RosterController // maybe somehow could be made val
-    lateinit var connectionSettingsController: ConnectionSettingsController
     lateinit var connection: AbstractXMPPConnection
-    val flameConnectionConfiguartionSetting: FlameConnectionConfigurationSettings by inject()
+    private val flameConnectionConfigurationSetting: FlameConnectionConfigurationSettings by inject()
 
     private lateinit var connectionConfiguration: XMPPTCPConnectionConfiguration
 
     private fun loadConnectionConfigurations(usernameInput: String?, domainInput: String?, passwordInput: String?) {
         connectionConfiguration = XMPPTCPConnectionConfiguration.builder()
-            .setResource(flameConnectionConfiguartionSetting.readResource())
+            .setResource(flameConnectionConfigurationSetting.readResource())
             .setCompressionEnabled(false)
-            .setConnectTimeout(flameConnectionConfiguartionSetting.readTimeout().toInt())
-            .setPort(flameConnectionConfiguartionSetting.readPort().toInt())
+            .setConnectTimeout(flameConnectionConfigurationSetting.readTimeout().toInt())
+            .setPort(flameConnectionConfigurationSetting.readPort().toInt())
             .setSecurityMode(ifpossible)
             .setUsernameAndPassword(usernameInput, passwordInput)
             .setHost(resolveHostFromDns(domainInput))

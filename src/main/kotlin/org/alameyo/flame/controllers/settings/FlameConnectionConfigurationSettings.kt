@@ -46,4 +46,3 @@ class FlameConnectionConfigurationSettings : Controller() {
         LOGIN_SETTINGS(FLAME_HOME.path + File.separator + "login_settings.properties")
     }
 }
-
