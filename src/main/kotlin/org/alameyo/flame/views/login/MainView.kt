@@ -1,8 +1,9 @@
-package org.alameyo.flame.views
+package org.alameyo.flame.views.login
 
 import javafx.beans.property.SimpleStringProperty
 import org.alameyo.flame.controllers.FlameController
 import org.alameyo.flame.css.FlameStyle
+import org.alameyo.flame.views.chat.FlameApplicationView
 import tornadofx.*
 
 class MainView : View() {

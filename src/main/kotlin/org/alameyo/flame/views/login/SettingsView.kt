@@ -1,4 +1,4 @@
-package org.alameyo.flame.views
+package org.alameyo.flame.views.login
 
 import javafx.beans.property.SimpleStringProperty
 import org.alameyo.flame.controllers.settings.FlameConnectionConfigurationSettings
