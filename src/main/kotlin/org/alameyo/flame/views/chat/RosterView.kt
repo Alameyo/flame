@@ -4,7 +4,6 @@ import javafx.scene.control.TabPane
 import org.alameyo.flame.controllers.ChatAreaController
 import org.alameyo.flame.controllers.FlameController
 import org.alameyo.flame.css.FlameStyle
-import org.alameyo.flame.models.ChatModel
 import org.alameyo.flame.models.FlameRosterEntry
 import tornadofx.*
 

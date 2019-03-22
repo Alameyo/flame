@@ -2,7 +2,6 @@ package org.alameyo.flame.views.chat
 
 import javafx.event.EventHandler
 import javafx.scene.control.Tab
-import org.alameyo.flame.models.ChatModel
 import tornadofx.*
 
 class ChatAreaView : View() {
@@ -19,9 +18,11 @@ class ChatAreaView : View() {
         }
     }
 
-    fun addChatTab(chatModel: ChatModel) {
-        val tab = Tab(chatModel.corespondent)
-        tab.onClosed = EventHandler { chatModel.isOpen = false }
-        root.tabs.add(tab)
+    fun addChatTab(chatTab: ChatTab) {
+        root.tabs.add(chatTab)
     }
+
+//    fun createTabl() {
+//        tab
+//    }
 }
