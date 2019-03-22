@@ -1,6 +1,6 @@
 package org.alameyo.flame.models
 
-import org.alameyo.flame.views.chat.ChatTab
+import org.alameyo.flame.views.home.chat.ChatTab
 import org.jivesoftware.smack.roster.RosterEntry
 
 class FlameRosterEntry(val name: String?, val jid: String) {

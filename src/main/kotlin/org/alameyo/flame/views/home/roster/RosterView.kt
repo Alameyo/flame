@@ -1,4 +1,4 @@
-package org.alameyo.flame.views.chat
+package org.alameyo.flame.views.home.roster
 
 import javafx.scene.control.TabPane
 import org.alameyo.flame.controllers.ChatAreaController

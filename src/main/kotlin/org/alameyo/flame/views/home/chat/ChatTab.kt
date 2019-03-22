@@ -1,8 +1,7 @@
-package org.alameyo.flame.views.chat
+package org.alameyo.flame.views.home.chat
 
 import javafx.event.EventHandler
 import javafx.scene.control.Tab
-import javafx.scene.paint.Color
 import javafx.scene.paint.Color.*
 import org.alameyo.flame.models.ChatEntry
 import org.alameyo.flame.models.FlameRosterEntry

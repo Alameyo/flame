@@ -1,8 +1,8 @@
 package org.alameyo.flame.controllers
 
-import org.alameyo.flame.views.chat.ChatTab
+import org.alameyo.flame.views.home.chat.ChatTab
 import org.alameyo.flame.models.FlameRosterEntry
-import org.alameyo.flame.views.chat.ChatAreaView
+import org.alameyo.flame.views.home.chat.ChatAreaView
 import tornadofx.*
 
 class ChatAreaController: Controller() {

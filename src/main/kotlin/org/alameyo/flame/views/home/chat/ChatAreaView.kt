@@ -1,4 +1,4 @@
-package org.alameyo.flame.views.chat
+package org.alameyo.flame.views.home.chat
 
 import tornadofx.View
 import tornadofx.tabpane
