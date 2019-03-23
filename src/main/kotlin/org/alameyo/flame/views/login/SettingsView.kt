@@ -13,10 +13,7 @@ class SettingsView : View("My View") {
     private val resource = SimpleStringProperty()
 
     init {
-        flameConnectionConfigurationSettings.loadProperties()
-        port.value = flameConnectionConfigurationSettings.readPort()
-        timeout.value = flameConnectionConfigurationSettings.readTimeout()
-        resource.value = flameConnectionConfigurationSettings.readResource()
+        loadSettings()
     }
 
     override val root = vbox {
@@ -72,5 +69,12 @@ class SettingsView : View("My View") {
         flameConnectionConfigurationSettings.writeResource(resource.value)
         flameConnectionConfigurationSettings.writeTimeout(timeout.value)
         flameConnectionConfigurationSettings.saveProperties()
+    }
+
+    private fun loadSettings() {
+        flameConnectionConfigurationSettings.loadProperties()
+        port.value = flameConnectionConfigurationSettings.readPort()
+        timeout.value = flameConnectionConfigurationSettings.readTimeout()
+        resource.value = flameConnectionConfigurationSettings.readResource()
     }
 }
