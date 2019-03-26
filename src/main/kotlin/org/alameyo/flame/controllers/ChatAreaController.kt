@@ -1,17 +1,22 @@
 package org.alameyo.flame.controllers
 
-import org.alameyo.flame.views.home.chat.ChatTab
 import org.alameyo.flame.models.FlameRosterEntry
 import org.alameyo.flame.views.home.chat.ChatAreaView
-import tornadofx.*
+import org.alameyo.flame.views.home.chat.ChatTab
+import tornadofx.Controller
 
-class ChatAreaController: Controller() {
+
+class ChatAreaController : Controller() {
 
     private val setOfChats = mutableSetOf<ChatTab>()
 
-    fun openChat(flameRosterEntry: FlameRosterEntry) {
-        val chatToOpen = setOfChats.find { it.flameRosterEntry.jid == flameRosterEntry.jid}?: throw NonExistentChatException()
-        if(!chatToOpen.isOpen) {
+    fun openChatWithRosterEntry(flameRosterEntry: FlameRosterEntry) {
+        val chatToOpen = setOfChats.find { it.flameRosterEntry.jid == flameRosterEntry.jid } ?: throw NonExistentChatException()
+        openChat(chatToOpen)
+    }
+
+    fun openChat(chatToOpen: ChatTab) {
+        if (!chatToOpen.isOpen) {
             chatToOpen.isOpen = true
             find<ChatAreaView>().addChatTab(chatToOpen)
         }
@@ -19,5 +24,5 @@ class ChatAreaController: Controller() {
 
     fun addChat(flameRosterEntry: FlameRosterEntry) = setOfChats.add(ChatTab(flameRosterEntry))
 
-    class NonExistentChatException: Exception("Cannot find chat tab which is meant to be opened")
+    class NonExistentChatException : Exception("Cannot find chat tab which is meant to be opened")
 }

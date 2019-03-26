@@ -26,7 +26,7 @@ class RosterView : View() {
                                 addClass(FlameStyle.roundButton)
 
                                 action {
-                                        chatAreaController.openChat(flameRosterEntry)
+                                        chatAreaController.openChatWithRosterEntry(flameRosterEntry)
                                 }
                             }
                         }

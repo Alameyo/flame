@@ -15,9 +15,14 @@ class ChatEntry(from: String, message: String) : View() {
     private val time = now()
     private val formatter = ofPattern("HH:mm:ss")
     private val timeString = formatter.format(time)
+    private val fromMe = if (from == "ME") {
+        "ME"
+    } else {
+        ""
+    }
 
     init {
-        entry = "$timeString | $from:$message\n"
+        entry = "$timeString | $fromMe:$message\n"
     }
 
     override val root = hbox {
