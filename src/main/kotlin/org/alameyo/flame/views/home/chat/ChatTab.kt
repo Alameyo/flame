@@ -91,7 +91,7 @@ class ChatTab(val flameRosterEntry: FlameRosterEntry) : Tab(flameRosterEntry.nam
 
         override fun processStanza(packet: Stanza?) {
             when (packet) {
-                is Message -> if(packet.body!=null) {
+                is Message -> if (packet.body != null) {
                     chatTab.processIncomingMessage(packet)
                 }
             }
