@@ -1,6 +1,7 @@
 package org.alameyo.flame.css
 
 import javafx.geometry.Pos
+import javafx.scene.paint.Color
 import tornadofx.*
 
 class FlameStyle : Stylesheet() {
@@ -14,6 +15,9 @@ class FlameStyle : Stylesheet() {
         val settingsTab by cssclass()
         val rosterList by cssclass()
         val roundButton by cssclass()
+        val chatVboxStyle by cssclass()
+        val chatScrollPaneStyle by cssclass()
+        val chatTextFieldStyle by cssclass()
     }
 
     init {
@@ -60,6 +64,25 @@ class FlameStyle : Stylesheet() {
             maxWidth = 80.px
             maxHeight = 80.px
             alignment = Pos.CENTER
+        }
+
+        chatVboxStyle {
+            backgroundColor += c("#27324E")
+            prefHeight = 500.px
+            maxHeight = 500.px
+            prefWidth = 600.px
+        }
+
+        chatScrollPaneStyle {
+            baseColor = c("#27324E")
+            backgroundColor += Color.TRANSPARENT
+            prefHeight = 500.px
+            maxHeight = 500.px
+            prefWidth = 600.px
+        }
+
+        chatTextFieldStyle {
+            prefWidth = 600.px
         }
     }
 }

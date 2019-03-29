@@ -3,21 +3,21 @@ package org.alameyo.flame.views.home.chat
 import javafx.event.EventHandler
 import javafx.scene.control.ScrollPane
 import javafx.scene.control.Tab
-import javafx.scene.paint.Color.*
 import org.alameyo.flame.controllers.FlameController
+import org.alameyo.flame.css.FlameStyle.Companion.chatScrollPaneStyle
+import org.alameyo.flame.css.FlameStyle.Companion.chatTextFieldStyle
+import org.alameyo.flame.css.FlameStyle.Companion.chatVboxStyle
 import org.alameyo.flame.models.ChatEntry
 import org.alameyo.flame.models.FlameRosterEntry
 import org.jivesoftware.smack.StanzaListener
 import tornadofx.*
 import java.lang.Exception
 import org.jivesoftware.smack.filter.FromMatchesFilter
-import org.jivesoftware.smack.filter.StanzaTypeFilter
 import org.jivesoftware.smack.filter.AndFilter
 import org.jivesoftware.smack.filter.StanzaFilter
 import org.jivesoftware.smack.filter.StanzaTypeFilter.*
 import org.jivesoftware.smack.packet.Message
 import org.jivesoftware.smack.packet.Stanza
-import org.jivesoftware.smack.tcp.XMPPTCPConnection
 
 
 class ChatTab(val flameRosterEntry: FlameRosterEntry) : Tab(flameRosterEntry.name ?: flameRosterEntry.jid ?: throw ChatTabWithoutNameException()) {
@@ -31,31 +31,17 @@ class ChatTab(val flameRosterEntry: FlameRosterEntry) : Tab(flameRosterEntry.nam
         onClosed = EventHandler { isOpen = false }
         add(
             vbox {
-                style {
-                    backgroundColor += c("#27324E")
-                    prefHeight = 500.px
-                    maxHeight = 500.px
-                    prefWidth = 600.px
-                }
+                addClass(chatVboxStyle)
                 chatBox = scrollpane {
                     fitToWidthProperty().value = true
-                    style {
-                        baseColor = c("#27324E")
-                        backgroundColor += TRANSPARENT
-                        prefHeight = 500.px
-                        maxHeight = 500.px
-                        prefWidth = 600.px
-
-                    }
+                    addClass(chatScrollPaneStyle)
                     vbox {
 
                     }
                 }
                 textfield {
                     promptText = "Send the message"
-                    style {
-                        prefWidth = 600.px
-                    }
+                    addClass(chatTextFieldStyle)
                     action {
                         chatBox.content += ChatEntry("ME", text)
                         text = ""
