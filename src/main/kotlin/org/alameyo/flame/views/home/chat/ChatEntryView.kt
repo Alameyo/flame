@@ -1,4 +1,4 @@
-package org.alameyo.flame.models
+package org.alameyo.flame.views.home.chat
 
 import javafx.geometry.Pos.BASELINE_LEFT
 import tornadofx.*
@@ -9,7 +9,7 @@ import java.time.format.DateTimeFormatter.ofPattern
 /**
  * This class format message to form displayable in chatroom.
  */
-class ChatEntry(from: String, message: String) : View() {
+class ChatEntryView(from: String, message: String) : View() {
 
     private val entry: String
     private val time = now()

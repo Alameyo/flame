@@ -7,7 +7,6 @@ import org.alameyo.flame.controllers.FlameController
 import org.alameyo.flame.css.FlameStyle.Companion.chatScrollPaneStyle
 import org.alameyo.flame.css.FlameStyle.Companion.chatTextFieldStyle
 import org.alameyo.flame.css.FlameStyle.Companion.chatVboxStyle
-import org.alameyo.flame.models.ChatEntry
 import org.alameyo.flame.models.FlameRosterEntry
 import org.jivesoftware.smack.StanzaListener
 import tornadofx.*
@@ -23,7 +22,7 @@ import org.jivesoftware.smack.packet.Stanza
 class ChatTab(val flameRosterEntry: FlameRosterEntry) : Tab(flameRosterEntry.name ?: flameRosterEntry.jid ?: throw ChatTabWithoutNameException()) {
 
     var isOpen = false
-    private val chatEntriesList = mutableListOf<ChatEntry>()
+    private val chatEntriesList = mutableListOf<ChatEntryView>()
     private lateinit var chatBox: ScrollPane
 
     init {
@@ -43,7 +42,7 @@ class ChatTab(val flameRosterEntry: FlameRosterEntry) : Tab(flameRosterEntry.nam
                     promptText = "Send the message"
                     addClass(chatTextFieldStyle)
                     action {
-                        chatBox.content += ChatEntry("ME", text)
+                        chatBox.content += ChatEntryView("ME", text)
                         text = ""
                         runLater(0.5.seconds) {
                             chatBox.vvalue = 1.0
@@ -53,7 +52,7 @@ class ChatTab(val flameRosterEntry: FlameRosterEntry) : Tab(flameRosterEntry.nam
             })
     }
 
-    private fun addEntry(chatEntry: ChatEntry) {
+    private fun addEntry(chatEntry: ChatEntryView) {
         runAsync {
             chatEntriesList.add(chatEntry)
         } ui {
@@ -62,7 +61,7 @@ class ChatTab(val flameRosterEntry: FlameRosterEntry) : Tab(flameRosterEntry.nam
     }
 
     fun processIncomingMessage(stanza: Message) =
-        addEntry(ChatEntry(flameRosterEntry.name ?: stanza.from.asBareJid().toString(), stanza.body))
+        addEntry(ChatEntryView(flameRosterEntry.name ?: stanza.from.asBareJid().toString(), stanza.body))
 
     private class ChatTabWithoutNameException : Exception("Created chat tab have no name")
 
