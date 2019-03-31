@@ -11,7 +11,5 @@ class ChatMessageSender(jid: FlameRosterEntry) {
     private val chatManager = ChatManager.getInstanceFor(connection)
     private val chat = chatManager.chatWith(jid.bareJid.asEntityBareJidOrThrow())
 
-    fun send(message: String) {
-        chat.send(message)
-    }
+    fun send(message: String) = chat.send(message)
 }
