@@ -24,9 +24,8 @@ class RosterView : View() {
                             addClass(FlameStyle.rosterList)
                             button(it.name ?: it.jid.toString()) {
                                 addClass(FlameStyle.roundButton)
-
                                 action {
-                                        chatAreaController.openChatWithRosterEntry(flameRosterEntry)
+                                    chatAreaController.openChatWithRosterEntry(flameRosterEntry)
                                 }
                             }
                         }
