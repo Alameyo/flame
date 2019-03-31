@@ -1,4 +1,4 @@
-package org.alameyo.flame.controllers
+package org.alameyo.flame.controllers.chat
 
 import org.alameyo.flame.models.FlameRosterEntry
 import org.alameyo.flame.views.home.chat.ChatAreaView
