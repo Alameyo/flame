@@ -5,7 +5,9 @@ plugins {
 group 'org.alameyo.flame'
 version '1.0-SNAPSHOT'
 
-smack_version = "4.3.1"
+ext {
+    smack_version = "4.3.1"
+}
 
 repositories {
     mavenCentral()
