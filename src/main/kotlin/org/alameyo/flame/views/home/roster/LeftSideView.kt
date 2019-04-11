@@ -9,13 +9,15 @@ import tornadofx.*
 
 class LeftSideView : View() {
 
+    private val rosterView: RosterView by inject()
+    private val multiUserChatView: MultiUserChatView by inject()
     override val root = tabpane {
-        tab(RosterView::class) {
-            text = "Friends"
+        tab("Friends") {
+            content = rosterView.root
         }
 
         tab("Rooms") {
-
+            content = multiUserChatView.root
         }
 
         tabClosingPolicy = TabPane.TabClosingPolicy.UNAVAILABLE
