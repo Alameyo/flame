@@ -1,12 +1,12 @@
 package org.alameyo.flame.models
 
-import org.alameyo.flame.views.home.chat.DirectChatTab
 import org.jivesoftware.smack.roster.RosterEntry
+import org.jivesoftware.smackx.bookmarks.BookmarkedConference
+import org.jxmpp.jid.BareJid
 
-class FlameRosterEntry(val rosterEntry: RosterEntry) {
-    val name: String? = rosterEntry.name
-    val jid = rosterEntry.jid.toString()
-    val bareJid = rosterEntry.jid
+data class FlameRosterEntry private constructor(val name: String?, val jid: String, val bareJid: BareJid) {
 
-    var directChatTab: DirectChatTab? = null
+    constructor(rosterEntry: RosterEntry) : this(rosterEntry.name, rosterEntry.jid.toString(), rosterEntry.jid)
+
+    constructor(bookmarkedConference: BookmarkedConference) : this(bookmarkedConference.name, bookmarkedConference.jid.toString(), bookmarkedConference.jid.asBareJid())
 }
