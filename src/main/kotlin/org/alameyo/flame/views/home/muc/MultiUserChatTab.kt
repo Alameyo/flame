@@ -1,6 +1,6 @@
 package org.alameyo.flame.views.home.muc
 
-import org.alameyo.flame.controllers.chat.ChatStanzaListener
+import org.alameyo.flame.controllers.MultiUserChatStanzaListener
 import org.alameyo.flame.css.FlameStyle
 import org.alameyo.flame.models.FlameRosterEntry
 import org.alameyo.flame.views.home.chat.ChatEntryView
@@ -11,7 +11,7 @@ import tornadofx.*
 class MultiUserChatTab(flameRosterEntry: FlameRosterEntry) : ChatTab(flameRosterEntry) {
 
     init {
-        ChatStanzaListener(this)
+        MultiUserChatStanzaListener(this)
         add(
                 vbox {
                     addClass(FlameStyle.chatVboxStyle)
@@ -46,8 +46,6 @@ class MultiUserChatTab(flameRosterEntry: FlameRosterEntry) : ChatTab(flameRoster
             }
         }
     }
-    
-    override fun processIncomingMessage(stanza: Message) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-    }
+
+    override fun processIncomingMessage(stanza: Message) = addEntry(ChatEntryView(flameRosterEntry.name ?: stanza.from.asBareJid().toString(), stanza.body))
 }
