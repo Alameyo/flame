@@ -8,9 +8,9 @@ class ChatAreaView : View() {
 
     override val root = tabpane()
 
-    fun addChatTab(directChatTab: DirectChatTab) {
+    fun addChatTab(chatTab: ChatTab) {
         runLater {
-            root.tabs.add(directChatTab)
+            root.tabs.add(chatTab)
         }
     }
 }
