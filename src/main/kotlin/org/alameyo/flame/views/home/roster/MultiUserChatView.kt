@@ -3,7 +3,7 @@ package org.alameyo.flame.views.home.roster
 import org.alameyo.flame.controllers.BookmarksController
 import org.alameyo.flame.controllers.chat.ChatAreaController
 import org.alameyo.flame.css.FlameStyle
-import org.alameyo.flame.models.FlameRosterEntry
+import org.alameyo.flame.models.FlameContactEntry
 import tornadofx.*
 
 class MultiUserChatView : View() {
@@ -14,7 +14,7 @@ class MultiUserChatView : View() {
     override val root = scrollpane {
         vbox {
             bookmarksController.bookmarks().forEach {
-                val flameRosterEntry = FlameRosterEntry(it)
+                val flameRosterEntry = FlameContactEntry(it)
                 chatAreaController.addMuc(flameRosterEntry)
                 hbox {
                     addClass(FlameStyle.rosterList)

@@ -12,9 +12,9 @@ class MultiUserChatStanzaListener(private val chatTab: MultiUserChatTab) : Messa
     private val multiUserChatManager = MultiUserChatManager.getInstanceFor(connection)
 
     init {
-        val chat = multiUserChatManager.getMultiUserChat(chatTab.flameRosterEntry.bareJid.asEntityBareJidOrThrow())
+        val chat = multiUserChatManager.getMultiUserChat(chatTab.flameContactEntry.bareJid.asEntityBareJidOrThrow())
 
-        chat.join(chatTab.flameRosterEntry.nickname)
+        chat.join(chatTab.flameContactEntry.nickname)
         chat.addMessageListener(this)
     }
 

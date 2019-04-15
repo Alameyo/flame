@@ -5,15 +5,15 @@ import javafx.scene.control.ScrollPane
 import javafx.scene.control.Tab
 import javafx.scene.control.TextField
 import org.alameyo.flame.controllers.chat.ChatMessageSender
-import org.alameyo.flame.models.FlameRosterEntry
+import org.alameyo.flame.models.FlameContactEntry
 import org.jivesoftware.smack.packet.Message
 
-abstract class ChatTab(val flameRosterEntry: FlameRosterEntry) : Tab(flameRosterEntry.name ?: flameRosterEntry.jid ?: throw ChatTabWithoutNameException()) {
+abstract class ChatTab(val flameContactEntry: FlameContactEntry) : Tab(flameContactEntry.name ?: flameContactEntry.jid ?: throw ChatTabWithoutNameException()) {
     var isOpen = false
     protected val chatEntriesList = mutableListOf<ChatEntryView>()
     protected lateinit var chatBox: ScrollPane
     protected lateinit var promptTextField: TextField
-    protected val chatSender = ChatMessageSender(flameRosterEntry)
+    protected val chatSender = ChatMessageSender(flameContactEntry)
 
     init {
         onClosed = EventHandler { isOpen = false }

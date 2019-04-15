@@ -14,7 +14,7 @@ import tornadofx.find
 class ChatStanzaListener(private val chatTab: ChatTab) : StanzaListener {
 
     private val connection = find<FlameController>().connection
-    private val filter: StanzaFilter = AndFilter(StanzaTypeFilter.MESSAGE, FromMatchesFilter.create(chatTab.flameRosterEntry.bareJid))
+    private val filter: StanzaFilter = AndFilter(StanzaTypeFilter.MESSAGE, FromMatchesFilter.create(chatTab.flameContactEntry.bareJid))
 
     init {
         connection.addAsyncStanzaListener(this, filter)

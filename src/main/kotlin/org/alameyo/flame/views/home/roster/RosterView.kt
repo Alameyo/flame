@@ -3,7 +3,7 @@ package org.alameyo.flame.views.home.roster
 import org.alameyo.flame.controllers.FlameController
 import org.alameyo.flame.controllers.chat.ChatAreaController
 import org.alameyo.flame.css.FlameStyle
-import org.alameyo.flame.models.FlameRosterEntry
+import org.alameyo.flame.models.FlameContactEntry
 import tornadofx.*
 
 class RosterView : View() {
@@ -15,7 +15,7 @@ class RosterView : View() {
     override val root = scrollpane {
         vbox {
             rosterController.entries().forEach {
-                val flameRosterEntry = FlameRosterEntry(it)
+                val flameRosterEntry = FlameContactEntry(it)
                 chatAreaController.addChat(flameRosterEntry)
                 hbox {
                     addClass(FlameStyle.rosterList)

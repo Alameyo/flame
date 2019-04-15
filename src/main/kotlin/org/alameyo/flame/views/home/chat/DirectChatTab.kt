@@ -4,11 +4,11 @@ import org.alameyo.flame.controllers.chat.ChatStanzaListener
 import org.alameyo.flame.css.FlameStyle.Companion.chatScrollPaneStyle
 import org.alameyo.flame.css.FlameStyle.Companion.chatTextFieldStyle
 import org.alameyo.flame.css.FlameStyle.Companion.chatVboxStyle
-import org.alameyo.flame.models.FlameRosterEntry
+import org.alameyo.flame.models.FlameContactEntry
 import org.jivesoftware.smack.packet.Message
 import tornadofx.*
 
-class DirectChatTab(flameRosterEntry: FlameRosterEntry) : ChatTab(flameRosterEntry) {
+class DirectChatTab(flameContactEntry: FlameContactEntry) : ChatTab(flameContactEntry) {
 
     init {
         ChatStanzaListener(this)
@@ -48,5 +48,5 @@ class DirectChatTab(flameRosterEntry: FlameRosterEntry) : ChatTab(flameRosterEnt
     }
 
     override fun processIncomingMessage(stanza: Message) =
-            addEntry(ChatEntryView(flameRosterEntry.name ?: stanza.from.asBareJid().toString(), stanza.body))
+            addEntry(ChatEntryView(flameContactEntry.name ?: stanza.from.asBareJid().toString(), stanza.body))
 }

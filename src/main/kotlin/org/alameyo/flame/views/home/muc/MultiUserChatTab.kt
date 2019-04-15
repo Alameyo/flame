@@ -2,13 +2,13 @@ package org.alameyo.flame.views.home.muc
 
 import org.alameyo.flame.controllers.MultiUserChatStanzaListener
 import org.alameyo.flame.css.FlameStyle
-import org.alameyo.flame.models.FlameRosterEntry
+import org.alameyo.flame.models.FlameContactEntry
 import org.alameyo.flame.views.home.chat.ChatEntryView
 import org.alameyo.flame.views.home.chat.ChatTab
 import org.jivesoftware.smack.packet.Message
 import tornadofx.*
 
-class MultiUserChatTab(flameRosterEntry: FlameRosterEntry) : ChatTab(flameRosterEntry) {
+class MultiUserChatTab(flameContactEntry: FlameContactEntry) : ChatTab(flameContactEntry) {
 
     init {
         MultiUserChatStanzaListener(this)
@@ -47,5 +47,5 @@ class MultiUserChatTab(flameRosterEntry: FlameRosterEntry) : ChatTab(flameRoster
         }
     }
 
-    override fun processIncomingMessage(stanza: Message) = addEntry(ChatEntryView(flameRosterEntry.name ?: stanza.from.asBareJid().toString(), stanza.body))
+    override fun processIncomingMessage(stanza: Message) = addEntry(ChatEntryView(flameContactEntry.name ?: stanza.from.asBareJid().toString(), stanza.body))
 }

@@ -1,6 +1,6 @@
 package org.alameyo.flame.controllers.chat
 
-import org.alameyo.flame.models.FlameRosterEntry
+import org.alameyo.flame.models.FlameContactEntry
 import org.alameyo.flame.views.home.chat.ChatAreaView
 import org.alameyo.flame.views.home.chat.ChatTab
 import org.alameyo.flame.views.home.chat.DirectChatTab
@@ -12,8 +12,8 @@ class ChatAreaController : Controller() {
 
     private val setOfChats = mutableSetOf<ChatTab>()
 
-    fun openChatWithRosterEntry(flameRosterEntry: FlameRosterEntry) {
-        val chatToOpen = setOfChats.find { it.flameRosterEntry.jid == flameRosterEntry.jid } ?: throw NonExistentChatException()
+    fun openChatWithRosterEntry(flameContactEntry: FlameContactEntry) {
+        val chatToOpen = setOfChats.find { it.flameContactEntry.jid == flameContactEntry.jid } ?: throw NonExistentChatException()
         openChat(chatToOpen)
     }
 
@@ -24,9 +24,9 @@ class ChatAreaController : Controller() {
         }
     }
 
-    fun addChat(flameRosterEntry: FlameRosterEntry) = setOfChats.add(DirectChatTab(flameRosterEntry))
+    fun addChat(flameContactEntry: FlameContactEntry) = setOfChats.add(DirectChatTab(flameContactEntry))
 
-    fun addMuc(flameRosterEntry: FlameRosterEntry) = setOfChats.add(MultiUserChatTab(flameRosterEntry))
+    fun addMuc(flameContactEntry: FlameContactEntry) = setOfChats.add(MultiUserChatTab(flameContactEntry))
 
     class NonExistentChatException : Exception("Cannot find chat tab which is meant to be opened")
 }
