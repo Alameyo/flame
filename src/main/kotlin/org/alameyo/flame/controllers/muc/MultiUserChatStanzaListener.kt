@@ -1,5 +1,6 @@
-package org.alameyo.flame.controllers
+package org.alameyo.flame.controllers.muc
 
+import org.alameyo.flame.controllers.FlameController
 import org.alameyo.flame.views.home.muc.MultiUserChatTab
 import org.jivesoftware.smack.MessageListener
 import org.jivesoftware.smack.packet.Message

@@ -1,5 +1,6 @@
 package org.alameyo.flame.controllers
 
+import org.alameyo.flame.controllers.chat.RosterController
 import org.alameyo.flame.controllers.settings.FlameConnectionConfigurationSettings
 import org.jivesoftware.smack.AbstractXMPPConnection
 import org.jivesoftware.smack.ConnectionConfiguration

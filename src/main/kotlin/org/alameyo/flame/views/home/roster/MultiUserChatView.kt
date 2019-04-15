@@ -1,6 +1,6 @@
 package org.alameyo.flame.views.home.roster
 
-import org.alameyo.flame.controllers.BookmarksController
+import org.alameyo.flame.controllers.muc.BookmarksController
 import org.alameyo.flame.controllers.chat.ChatAreaController
 import org.alameyo.flame.css.FlameStyle
 import org.alameyo.flame.models.FlameContactEntry

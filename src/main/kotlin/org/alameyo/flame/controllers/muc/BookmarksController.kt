@@ -1,5 +1,6 @@
-package org.alameyo.flame.controllers
+package org.alameyo.flame.controllers.muc
 
+import org.alameyo.flame.controllers.FlameController
 import org.jivesoftware.smackx.bookmarks.BookmarkManager
 import org.jivesoftware.smackx.bookmarks.BookmarkedConference
 import tornadofx.Controller

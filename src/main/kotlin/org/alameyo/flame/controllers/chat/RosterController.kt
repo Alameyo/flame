@@ -1,4 +1,4 @@
-package org.alameyo.flame.controllers
+package org.alameyo.flame.controllers.chat
 
 import org.jivesoftware.smack.roster.Roster
 import org.jivesoftware.smack.roster.RosterEntry
