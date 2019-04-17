@@ -9,11 +9,11 @@ import org.alameyo.flame.models.FlameContactEntry
 import org.jivesoftware.smack.packet.Message
 
 abstract class ChatTab(val flameContactEntry: FlameContactEntry) : Tab(flameContactEntry.name ?: flameContactEntry.jid ?: throw ChatTabWithoutNameException()) {
+
     var isOpen = false
     protected val chatEntriesList = mutableListOf<ChatEntryView>()
     protected lateinit var chatBox: ScrollPane
     protected lateinit var promptTextField: TextField
-    protected val chatSender = ChatMessageSender(flameContactEntry)
 
     init {
         onClosed = EventHandler { isOpen = false }

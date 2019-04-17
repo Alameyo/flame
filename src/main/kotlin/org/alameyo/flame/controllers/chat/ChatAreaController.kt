@@ -7,7 +7,6 @@ import org.alameyo.flame.views.home.chat.DirectChatTab
 import org.alameyo.flame.views.home.muc.MultiUserChatTab
 import tornadofx.Controller
 
-
 class ChatAreaController : Controller() {
 
     private val setOfChats = mutableSetOf<ChatTab>()

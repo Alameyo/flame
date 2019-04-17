@@ -1,5 +1,6 @@
 package org.alameyo.flame.views.home.chat
 
+import org.alameyo.flame.controllers.chat.ChatMessageSender
 import org.alameyo.flame.controllers.chat.ChatStanzaListener
 import org.alameyo.flame.css.FlameStyle.Companion.chatScrollPaneStyle
 import org.alameyo.flame.css.FlameStyle.Companion.chatTextFieldStyle
@@ -9,6 +10,8 @@ import org.jivesoftware.smack.packet.Message
 import tornadofx.*
 
 class DirectChatTab(flameContactEntry: FlameContactEntry) : ChatTab(flameContactEntry) {
+
+    private val chatSender = ChatMessageSender(flameContactEntry)
 
     init {
         ChatStanzaListener(this)

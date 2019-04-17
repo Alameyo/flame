@@ -4,17 +4,13 @@ import org.alameyo.flame.controllers.FlameController
 import org.alameyo.flame.views.home.muc.MultiUserChatTab
 import org.jivesoftware.smack.MessageListener
 import org.jivesoftware.smack.packet.Message
+import org.jivesoftware.smackx.muc.MultiUserChat
 import org.jivesoftware.smackx.muc.MultiUserChatManager
 import tornadofx.find
 
-class MultiUserChatStanzaListener(private val chatTab: MultiUserChatTab) : MessageListener {
-
-    private val connection = find<FlameController>().connection
-    private val multiUserChatManager = MultiUserChatManager.getInstanceFor(connection)
+class MultiUserChatStanzaListener(private val chatTab: MultiUserChatTab, chat: MultiUserChat) : MessageListener {
 
     init {
-        val chat = multiUserChatManager.getMultiUserChat(chatTab.flameContactEntry.bareJid.asEntityBareJidOrThrow())
-
         chat.join(chatTab.flameContactEntry.nickname)
         chat.addMessageListener(this)
     }

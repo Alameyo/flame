@@ -1,5 +1,6 @@
 package org.alameyo.flame.views.home.muc
 
+import org.alameyo.flame.controllers.muc.MultiUserChatController
 import org.alameyo.flame.controllers.muc.MultiUserChatStanzaListener
 import org.alameyo.flame.css.FlameStyle
 import org.alameyo.flame.models.FlameContactEntry
@@ -9,9 +10,9 @@ import org.jivesoftware.smack.packet.Message
 import tornadofx.*
 
 class MultiUserChatTab(flameContactEntry: FlameContactEntry) : ChatTab(flameContactEntry) {
+    private val multiUserChatController = MultiUserChatController(this)
 
     init {
-        MultiUserChatStanzaListener(this)
         add(
                 vbox {
                     addClass(FlameStyle.chatVboxStyle)
@@ -31,8 +32,7 @@ class MultiUserChatTab(flameContactEntry: FlameContactEntry) : ChatTab(flameCont
     }
 
     private fun sendMessage() {
-        addEntry(ChatEntryView("ME", promptTextField.text))
-        chatSender.send(promptTextField.text)
+        multiUserChatController.send(promptTextField.text)
         promptTextField.clear()
     }
 
