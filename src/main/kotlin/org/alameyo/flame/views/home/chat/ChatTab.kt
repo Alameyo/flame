@@ -4,7 +4,6 @@ import javafx.event.EventHandler
 import javafx.scene.control.ScrollPane
 import javafx.scene.control.Tab
 import javafx.scene.control.TextField
-import org.alameyo.flame.controllers.chat.ChatMessageSender
 import org.alameyo.flame.models.FlameContactEntry
 import org.jivesoftware.smack.packet.Message
 

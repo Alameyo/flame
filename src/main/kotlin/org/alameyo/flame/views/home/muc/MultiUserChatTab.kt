@@ -47,5 +47,5 @@ class MultiUserChatTab(flameContactEntry: FlameContactEntry) : ChatTab(flameCont
         }
     }
 
-    override fun processIncomingMessage(stanza: Message) = addEntry(ChatEntryView(flameContactEntry.name ?: stanza.from.asBareJid().toString(), stanza.body))
+    override fun processIncomingMessage(stanza: Message) = addEntry(ChatEntryView(stanza.from.resourceOrEmpty.toString(), stanza.body))
 }
