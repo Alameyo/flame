@@ -13,6 +13,8 @@ class FlameStyle : Stylesheet() {
         val settingsField by cssclass()
         val settingsForm by cssclass()
         val settingsTab by cssclass()
+        val leftSideTab by cssclass()
+        val scrollPaneStyle by cssclass()
         val rosterList by cssclass()
         val roundButton by cssclass()
         val chatVboxStyle by cssclass()
@@ -53,16 +55,42 @@ class FlameStyle : Stylesheet() {
             maxWidth = 300.px
         }
 
+        leftSideTab {
+            backgroundColor += c("#27324E")
+        }
+
+        scrollPaneStyle {
+            backgroundColor += Color.TRANSPARENT
+            thumb {
+                backgroundColor +=Color.BLACK
+                baseColor += Color.BLACK
+            }
+            and(scrollBar) {
+                backgroundColor += Color.TRANSPARENT
+                and(vertical, track) {
+                    backgroundColor += Color.BLACK
+
+                    borderColor += box(Color.TRANSPARENT)
+                    backgroundRadius = multi(box(0.em))
+                }
+
+                and(thumb) {
+                    backgroundColor += Color.BLACK
+                    baseColor = Color.BLACK
+                }
+            }
+        }
+
         rosterList {
-            padding = box(10.px)
+            padding = box(10.0.px, 20.0.px)
         }
 
         roundButton {
-            backgroundRadius = multi(box(50.px), box(50.px))
-            minWidth = 80.px
-            minHeight = 80.px
-            maxWidth = 80.px
-            maxHeight = 80.px
+            backgroundRadius = multi(box(40.px), box(40.px))
+            minWidth = 70.px
+            minHeight = 70.px
+            maxWidth = 70.px
+            maxHeight = 70.px
             alignment = Pos.CENTER
         }
 
