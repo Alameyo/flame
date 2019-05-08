@@ -7,7 +7,7 @@ import org.alameyo.flame.views.home.FlameApplicationView
 import tornadofx.*
 import java.lang.IllegalArgumentException
 
-class MainView : View() {
+class LoginView : View() {
 
     private val controller: FlameController by inject()
     private val usernameInput = SimpleStringProperty()

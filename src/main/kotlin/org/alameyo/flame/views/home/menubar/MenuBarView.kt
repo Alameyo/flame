@@ -2,7 +2,7 @@ package org.alameyo.flame.views.home.menubar
 
 import org.alameyo.flame.controllers.FlameController
 import org.alameyo.flame.views.home.FlameApplicationView
-import org.alameyo.flame.views.login.MainView
+import org.alameyo.flame.views.login.LoginView
 import tornadofx.*
 
 class MenuBarView: View() {
@@ -14,7 +14,7 @@ class MenuBarView: View() {
             item("Log out") {
                 action {
                     connection.disconnect()
-                    find<FlameApplicationView>().replaceWith<MainView>(ViewTransition.Slide(0.3.seconds, ViewTransition.Direction.LEFT))
+                    find<FlameApplicationView>().replaceWith<LoginView>(ViewTransition.Slide(0.3.seconds, ViewTransition.Direction.RIGHT))
                 }
             }
         }

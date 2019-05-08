@@ -59,7 +59,7 @@ class SettingsView : View("My View") {
                 runAsync {
                     saveSettings()
                 }
-                replaceWith<MainView>()
+                replaceWith<LoginView>()
             }
         }
     }
