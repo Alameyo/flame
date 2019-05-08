@@ -5,12 +5,12 @@ import org.alameyo.flame.controllers.FlameController
 import org.alameyo.flame.css.FlameStyle
 import org.alameyo.flame.views.home.FlameApplicationView
 import tornadofx.*
+import java.lang.IllegalArgumentException
 
 class MainView : View() {
 
     private val controller: FlameController by inject()
     private val usernameInput = SimpleStringProperty()
-    private val domainInput = SimpleStringProperty()
     private val passwordInput = SimpleStringProperty()
 
     private val fieldPadding = 10.0
@@ -27,13 +27,6 @@ class MainView : View() {
                         paddingAll = fieldPadding
                         maxWidth = maxFieldWidth
                     }
-
-                    field("Domain") {
-                        textfield(domainInput)
-                        paddingAll = fieldPadding
-                        maxWidth = maxFieldWidth
-                    }
-
                     field("Password") {
                         passwordfield(passwordInput)
                         paddingAll = fieldPadding
@@ -43,10 +36,11 @@ class MainView : View() {
                     button("Connect") {
                         action {
                             runAsync {
+                                val (username, domain) = splitJid(usernameInput)
                                 controller.connect(
-                                    usernameInput.value,
-                                    domainInput.value,
-                                    passwordInput.value
+                                        username,
+                                        domain,
+                                        passwordInput.value
                                 )
                             } ui {
                                 if (it) replaceWith<FlameApplicationView>()
@@ -61,6 +55,20 @@ class MainView : View() {
                     }
                 }
             }
+        }
+    }
+
+    private fun splitJid(usernameInput: SimpleStringProperty): List<String> {
+        val usernameInputList = usernameInput.value.split("@")
+        validateJid(usernameInputList)
+        return usernameInputList
+    }
+
+    private fun validateJid(usernameInputList: List<String>) {
+        when {
+            usernameInputList.size != 2 -> throw IllegalArgumentException("Jid not in valid form, specify Jid as username@domain")
+            !usernameInputList[1].contains(".") ->
+                throw IllegalArgumentException("Jid not in valid form, domain should have top level domain and local part")
         }
     }
 }
