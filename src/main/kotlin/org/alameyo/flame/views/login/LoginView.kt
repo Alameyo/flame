@@ -2,6 +2,7 @@ package org.alameyo.flame.views.login
 
 import javafx.beans.property.SimpleStringProperty
 import org.alameyo.flame.controllers.FlameController
+import org.alameyo.flame.controllers.settings.FlameConnectionConfigurationSettings
 import org.alameyo.flame.css.FlameStyle
 import org.alameyo.flame.views.home.FlameApplicationView
 import tornadofx.*
@@ -10,11 +11,17 @@ import java.lang.IllegalArgumentException
 class LoginView : View() {
 
     private val controller: FlameController by inject()
+    private val flameConnectionConfigurationSettings: FlameConnectionConfigurationSettings by inject()
+
     private val usernameInput = SimpleStringProperty()
     private val passwordInput = SimpleStringProperty()
 
     private val fieldPadding = 10.0
     private val maxFieldWidth = 400.0
+
+    init {
+        loadSettings()
+    }
 
     override val root = vbox {
         addClass(FlameStyle.loginBackground)
@@ -43,7 +50,10 @@ class LoginView : View() {
                                         passwordInput.value
                                 )
                             } ui {
-                                if (it) replaceWith<FlameApplicationView>()
+                                if (it) {
+                                    replaceWith<FlameApplicationView>()
+                                    saveSettings()
+                                }
                             }
                         }
                     }
@@ -70,5 +80,15 @@ class LoginView : View() {
             !usernameInputList[1].contains(".") ->
                 throw IllegalArgumentException("Jid not in valid form, domain should have top level domain and local part")
         }
+    }
+
+    private fun saveSettings() {
+        flameConnectionConfigurationSettings.writeUserJid(usernameInput.value)
+        flameConnectionConfigurationSettings.saveProperties()
+    }
+
+    private fun loadSettings() {
+        flameConnectionConfigurationSettings.loadProperties()
+        usernameInput.value = flameConnectionConfigurationSettings.readUserJid()
     }
 }

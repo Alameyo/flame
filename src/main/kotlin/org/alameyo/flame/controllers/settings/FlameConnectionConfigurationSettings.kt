@@ -12,6 +12,12 @@ class FlameConnectionConfigurationSettings : Controller() {
 
     private val flameProperties = Properties()
 
+    fun writeUserJid(userJid: String) {
+        flameProperties[USER_JID.propertyName] = userJid
+    }
+
+    fun readUserJid() = flameProperties.getProperty(USER_JID.propertyName) ?: USER_JID.defaultValue
+
     fun writePort(port: String) {
         flameProperties[PORT.propertyName] = port
     }
@@ -34,7 +40,8 @@ class FlameConnectionConfigurationSettings : Controller() {
 
     fun saveProperties() = FileOutputStream(LOGIN_SETTINGS.path).use { flameProperties.store(it, null) }
 
-    private enum class PropertyName(val propertyName: String, val defaultValue: String) {
+    private enum class PropertyName(val propertyName: String, val defaultValue: String = "") {
+        USER_JID("user_jid"),
         TIMEOUT("timeout", "10000"),
         RESOURCE("resource", "flame"),
         PORT("port", "5222")
