@@ -1,12 +1,14 @@
 package org.alameyo.flame.controllers.settings
 
-import org.alameyo.flame.controllers.settings.FlameConnectionConfigurationSettings.Path.*
+import com.sun.javafx.PlatformUtil.isWindows
+import org.alameyo.flame.controllers.settings.FlameConnectionConfigurationSettings.Path.LOGIN_SETTINGS
 import org.alameyo.flame.controllers.settings.FlameConnectionConfigurationSettings.PropertyName.*
-import tornadofx.Controller
+import tornadofx.*
 import java.io.File
 import java.io.FileInputStream
 import java.io.FileOutputStream
 import java.util.*
+import kotlin.collections.set
 
 class FlameConnectionConfigurationSettings : Controller() {
 
@@ -36,6 +38,11 @@ class FlameConnectionConfigurationSettings : Controller() {
 
     fun readTimeout() = flameProperties.getProperty(TIMEOUT.propertyName) ?: TIMEOUT.defaultValue
 
+    fun checkIfPropertiesExist(): Boolean {
+        val file = File(LOGIN_SETTINGS.path)
+        return (file.exists() && !file.isDirectory)
+    }
+
     fun loadProperties() = FileInputStream(LOGIN_SETTINGS.path).use { flameProperties.load(it) }
 
     fun saveProperties() = FileOutputStream(LOGIN_SETTINGS.path).use { flameProperties.store(it, null) }
@@ -48,8 +55,16 @@ class FlameConnectionConfigurationSettings : Controller() {
     }
 
     private enum class Path(val path: String) {
-        USER_HOME(System.getProperty("user.home")),
+        APPDATA(System.getenv("APPDATA")),
+        USER_HOME(if (isWindows()) APPDATA.path else System.getProperty("user.home")),
         FLAME_HOME("${USER_HOME.path}${File.separator}flame"),
         LOGIN_SETTINGS(FLAME_HOME.path + File.separator + "login_settings.properties")
     }
+
+    fun createProperties() {
+        val file = File(LOGIN_SETTINGS.path)
+        file.parentFile.mkdirs()
+        file.createNewFile()
+    }
+
 }

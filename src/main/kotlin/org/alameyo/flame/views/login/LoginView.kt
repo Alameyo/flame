@@ -88,6 +88,9 @@ class LoginView : View() {
     }
 
     private fun loadSettings() {
+        if (!flameConnectionConfigurationSettings.checkIfPropertiesExist()) {
+            flameConnectionConfigurationSettings.createProperties()
+        }
         flameConnectionConfigurationSettings.loadProperties()
         usernameInput.value = flameConnectionConfigurationSettings.readUserJid()
     }
