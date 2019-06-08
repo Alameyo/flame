@@ -1,7 +1,6 @@
 package org.alameyo.flame.views.home.muc
 
 import org.alameyo.flame.controllers.muc.MultiUserChatController
-import org.alameyo.flame.controllers.muc.MultiUserChatStanzaListener
 import org.alameyo.flame.css.FlameStyle
 import org.alameyo.flame.models.FlameContactEntry
 import org.alameyo.flame.views.home.chat.ChatEntryView

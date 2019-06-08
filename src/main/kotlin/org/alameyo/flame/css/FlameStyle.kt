@@ -15,6 +15,7 @@ class FlameStyle : Stylesheet() {
         val settingsTab by cssclass()
         val rosterList by cssclass()
         val roundButton by cssclass()
+        val littleRoundButton by cssclass()
         val chatVboxStyle by cssclass()
         val chatScrollPaneStyle by cssclass()
         val chatTextFieldStyle by cssclass()
@@ -63,6 +64,15 @@ class FlameStyle : Stylesheet() {
             minHeight = 80.px
             maxWidth = 80.px
             maxHeight = 80.px
+            alignment = Pos.CENTER
+        }
+
+        littleRoundButton {
+            backgroundRadius = multi(box(30.px), box(30.px))
+            minWidth = 40.px
+            minHeight = 40.px
+            maxWidth = 40.px
+            maxHeight = 40.px
             alignment = Pos.CENTER
         }
 
