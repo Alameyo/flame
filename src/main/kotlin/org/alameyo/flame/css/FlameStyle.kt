@@ -2,6 +2,7 @@ package org.alameyo.flame.css
 
 import javafx.geometry.Pos
 import javafx.scene.paint.Color
+import org.alameyo.flame.css.FlameColors.*
 import tornadofx.*
 
 class FlameStyle : Stylesheet() {
@@ -24,18 +25,18 @@ class FlameStyle : Stylesheet() {
     init {
         loginBackground {
             padding = box(200.px)
-            backgroundColor += c("#27324E")
+            backgroundColor += c(BACKGROUND.colorHex)
             prefHeight = 600.px
             prefWidth = 800.px
         }
 
         loginBox {
             fontSize = 16.px
-            backgroundColor += c("#EB5401")
+            backgroundColor += c(BACKGROUND_ORANGE.colorHex)
         }
 
         settings {
-            backgroundColor += c("#27324E")
+            backgroundColor += c(BACKGROUND.colorHex)
         }
 
         settingsTab {
@@ -43,7 +44,7 @@ class FlameStyle : Stylesheet() {
         }
 
         settingsForm {
-            backgroundColor += c("#EB5401")
+            backgroundColor += c(BACKGROUND_ORANGE.colorHex)
         }
 
         settingsField {
@@ -77,14 +78,14 @@ class FlameStyle : Stylesheet() {
         }
 
         chatVboxStyle {
-            backgroundColor += c("#27324E")
+            backgroundColor += c(BACKGROUND.colorHex)
             prefHeight = 500.px
             maxHeight = 500.px
             prefWidth = 600.px
         }
 
         chatScrollPaneStyle {
-            baseColor = c("#27324E")
+            baseColor = c(BACKGROUND.colorHex)
             backgroundColor += Color.TRANSPARENT
             prefHeight = 500.px
             maxHeight = 500.px
