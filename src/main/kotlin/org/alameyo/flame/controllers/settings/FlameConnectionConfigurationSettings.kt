@@ -1,5 +1,7 @@
 package org.alameyo.flame.controllers.settings
 
+import com.sun.javafx.PlatformUtil
+import com.sun.javafx.PlatformUtil.isLinux
 import com.sun.javafx.PlatformUtil.isWindows
 import org.alameyo.flame.controllers.settings.FlameConnectionConfigurationSettings.Path.LOGIN_SETTINGS
 import org.alameyo.flame.controllers.settings.FlameConnectionConfigurationSettings.PropertyName.*
@@ -55,7 +57,7 @@ class FlameConnectionConfigurationSettings : Controller() {
     }
 
     private enum class Path(val path: String) {
-        APPDATA(System.getenv("APPDATA")),
+        APPDATA(if (isLinux()) "" else System.getenv("APPDATA")),
         USER_HOME(if (isWindows()) APPDATA.path else System.getProperty("user.home")),
         FLAME_HOME("${USER_HOME.path}${File.separator}flame"),
         LOGIN_SETTINGS(FLAME_HOME.path + File.separator + "login_settings.properties")
