@@ -2,3 +2,6 @@ language: java
 sudo: true
 jdk:
   - oraclejdk8
+os:
+  - linux
+  - windows
