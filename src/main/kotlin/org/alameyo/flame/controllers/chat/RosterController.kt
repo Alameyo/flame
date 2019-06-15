@@ -1,6 +1,7 @@
 package org.alameyo.flame.controllers.chat
 
 import javafx.collections.ObservableSet
+import org.alameyo.flame.models.FlameContactEntry
 import org.jivesoftware.smack.roster.Roster
 import org.jivesoftware.smack.roster.RosterEntry
 import org.jxmpp.jid.BareJid
@@ -27,5 +28,10 @@ class RosterController(private val roster: Roster) : Controller() {
             !name.isNullOrEmpty() -> name
             else -> bareJid.localpartOrNull.toString()
         }
+    }
+
+    fun removeContactFromRoster(flameContactEntry: FlameContactEntry) {
+        roster.reloadAndWait()
+        roster.removeEntry(entries().firstOrNull { it.jid == flameContactEntry.bareJid })
     }
 }
