@@ -63,7 +63,21 @@ class RosterView : View() {
                 action {
                     chatAreaController.openChatWithRosterEntry(flameRosterEntry)
                 }
+                contextmenu {
+                    item("Remove contact").action {
+                        removeContact(flameRosterEntry)
+                    }
+                }
+
             }
+        }
+    }
+
+    private fun removeContact(flameContactEntry: FlameContactEntry) {
+        runAsync {
+            rosterController.removeContactFromRoster(flameContactEntry)
+        } ui {
+            populateRoster(holdBox)
         }
     }
 }
