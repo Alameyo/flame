@@ -6,7 +6,7 @@ group 'org.alameyo.flame'
 version '1.0-SNAPSHOT'
 
 ext {
-    smack_version = "4.3.1"
+    smack_version = "4.3.4"
 }
 
 repositories {
