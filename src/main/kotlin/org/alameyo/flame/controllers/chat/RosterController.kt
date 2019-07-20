@@ -1,13 +1,14 @@
 package org.alameyo.flame.controllers.chat
 
 import javafx.collections.ObservableSet
+import org.alameyo.flame.controllers.JidOperations
 import org.alameyo.flame.models.FlameContactEntry
 import org.jivesoftware.smack.roster.Roster
 import org.jivesoftware.smack.roster.RosterEntry
 import org.jxmpp.jid.BareJid
 import tornadofx.*
 
-class RosterController(private val roster: Roster) : Controller() {
+class RosterController(private val roster: Roster) : Controller(), JidOperations {
 
     fun entries(): ObservableSet<RosterEntry> {
         roster.reloadAndWait()
@@ -21,13 +22,6 @@ class RosterController(private val roster: Roster) : Controller() {
         roster.createEntry(bareJid, formattedName, null)
         roster.reloadAndWait()
         roster.sendSubscriptionRequest(bareJid)
-    }
-
-    private fun giveName(name: String?, bareJid: BareJid): String? {
-        return when {
-            !name.isNullOrEmpty() -> name
-            else -> bareJid.localpartOrNull.toString()
-        }
     }
 
     fun removeContactFromRoster(flameContactEntry: FlameContactEntry) {
