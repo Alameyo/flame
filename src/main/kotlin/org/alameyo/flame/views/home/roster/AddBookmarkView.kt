@@ -2,16 +2,17 @@ package org.alameyo.flame.views.home.roster
 
 import javafx.beans.property.SimpleStringProperty
 import org.alameyo.flame.controllers.FlameController
-import org.alameyo.flame.css.FlameStyle.Companion.littleRoundButton
+import org.alameyo.flame.controllers.muc.BookmarksController
+import org.alameyo.flame.css.FlameStyle
 import org.alameyo.flame.views.fitSize
 import org.jxmpp.jid.impl.JidCreate.bareFrom
 import tornadofx.*
 
-class AddContactView : View() {
+class AddBookmarkView : View() {
 
     private val flameController: FlameController by inject()
-    private val rosterController = flameController.rosterController
-    private val rosterView = find<RosterView>()
+    private val bookmarksController: BookmarksController by inject()
+    private val bookmarksView = find<BookmarksView>()
 
     private val jid = SimpleStringProperty()
     private val name = SimpleStringProperty()
@@ -20,21 +21,21 @@ class AddContactView : View() {
         hbox {
             form {
                 fieldset {
-                    field("Contact JID") {
+                    field("Bookmark JID") {
                         textfield(jid)
                     }
                     field("Name") {
                         textfield(name)
                     }
                     button {
-                        addClass(littleRoundButton)
-                        imageview("UI/Friend_Add.png").fitSize(this)
+                        addClass(FlameStyle.littleRoundButton)
+                        imageview("UI/Rooms.png").fitSize(this)
                         action {
                             if (validateInput()) {
                                 runAsync {
-                                    rosterController.addContactToRoster(bareFrom(jid.value), name.value)
+                                    bookmarksController.addBookmark(bareFrom(jid.value), name.value)
                                 } ui {
-                                    rosterView.populateScrollPane(rosterView.holdBox)
+                                    bookmarksView.populateScrollPane(bookmarksView.holdBox)
                                 }
                             }
                         }
@@ -45,6 +46,4 @@ class AddContactView : View() {
     }
 
     private fun validateInput() = !jid.value.isNullOrEmpty()
-
-
 }
