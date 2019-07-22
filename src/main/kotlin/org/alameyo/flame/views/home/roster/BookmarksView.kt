@@ -22,7 +22,7 @@ class BookmarksView : ContactsView() {
 
     override fun removeContact(flameContactEntry: FlameContactEntry) {
         runAsync {
-            bookmarksController.bookmarks()
+            bookmarksController.removeBookmark(flameContactEntry)
         } ui {
             populateScrollPane(holdBox)
         }
@@ -30,7 +30,7 @@ class BookmarksView : ContactsView() {
 
     override fun replaceAction() {
         when (currentState) {
-            CONTACT_VIEW -> runAsync {currentState = BOOKMARKS_VIEW} ui { contactView.replaceWith<AddBookmarkView>() }
+            CONTACT_VIEW -> runAsync { currentState = BOOKMARKS_VIEW } ui { contactView.replaceWith<AddBookmarkView>() }
             ROSTER_VIEW -> runAsync { currentState = BOOKMARKS_VIEW } ui {
                 find<AddContactView>().replaceWith<AddBookmarkView>()
             }
