@@ -2,8 +2,10 @@ package org.alameyo.flame.controllers.muc
 
 import org.alameyo.flame.controllers.FlameController
 import org.alameyo.flame.controllers.JidOperations
+import org.alameyo.flame.models.FlameContactEntry
 import org.jivesoftware.smackx.bookmarks.BookmarkManager
 import org.jxmpp.jid.BareJid
+import org.jxmpp.jid.impl.JidCreate
 import org.jxmpp.jid.impl.JidCreate.entityBareFrom
 import tornadofx.Controller
 import tornadofx.observable
@@ -20,4 +22,7 @@ class BookmarksController : Controller(), JidOperations {
         bookmarkManager.addBookmarkedConference(formattedName, entityBareFrom(bareJid), true, flameController.connection.user.resourceOrEmpty, null)
     }
 
+    fun removeBookmark(flameContactEntry: FlameContactEntry) {
+        bookmarkManager.removeBookmarkedConference(entityBareFrom(flameContactEntry.bareJid))
+    }
 }
