@@ -1,11 +1,9 @@
 package org.alameyo.flame.controllers
 
-import org.alameyo.flame.controllers.chat.RosterController
 import org.alameyo.flame.controllers.settings.FlameConnectionConfigurationSettings
 import org.jivesoftware.smack.AbstractXMPPConnection
 import org.jivesoftware.smack.ConnectionConfiguration
 import org.jivesoftware.smack.ConnectionConfiguration.SecurityMode.ifpossible
-import org.jivesoftware.smack.roster.Roster.getInstanceFor
 import org.jivesoftware.smack.tcp.XMPPTCPConnection
 import org.jivesoftware.smack.tcp.XMPPTCPConnectionConfiguration
 import org.jivesoftware.smack.util.DNSUtil.resolveXMPPServiceDomain
@@ -15,7 +13,6 @@ import tornadofx.Controller
 
 class FlameController : Controller() {
 
-    lateinit var rosterController: RosterController // maybe somehow could be made val
     lateinit var connection: AbstractXMPPConnection
     private val flameConnectionConfigurationSetting: FlameConnectionConfigurationSettings by inject()
 
@@ -40,17 +37,10 @@ class FlameController : Controller() {
         connection.connect()
         println("Connecting to the server $usernameInput@$domainInput")
         connection.login()
-        if (connection.isAuthenticated) {
-            afterLoginConfiguration(connection)
-        }
         return connection.isAuthenticated
     }
 
     private fun resolveHostFromDns(domainInput: String?): DnsName? =
         resolveXMPPServiceDomain(from(domainInput), null, ConnectionConfiguration.DnssecMode.disabled)[0].fqdn
 
-
-    private fun afterLoginConfiguration(connection: AbstractXMPPConnection) {
-        rosterController = RosterController(getInstanceFor(connection))
-    }
 }

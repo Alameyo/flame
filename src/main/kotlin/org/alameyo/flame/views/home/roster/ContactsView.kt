@@ -4,6 +4,7 @@ import javafx.scene.layout.HBox
 import javafx.scene.layout.VBox
 import org.alameyo.flame.controllers.FlameController
 import org.alameyo.flame.controllers.chat.ChatAreaController
+import org.alameyo.flame.controllers.chat.RosterController
 import org.alameyo.flame.controllers.muc.BookmarksController
 import org.alameyo.flame.css.FlameStyle.Companion.rosterList
 import org.alameyo.flame.css.FlameStyle.Companion.roundButton
@@ -14,8 +15,7 @@ import org.alameyo.flame.views.home.roster.ContactsView.StateEnum.CONTACT_VIEW
 import tornadofx.*
 
 abstract class ContactsView : View() {
-    private val flameController: FlameController by inject()
-    protected val rosterController = flameController.rosterController //rosterController needs rework as it works weird now anda can't be in subclass
+    protected val rosterController: RosterController by inject() //rosterController needs rework as it works weird now anda can't be in subclass
     protected val bookmarksController: BookmarksController by inject() //it might be TornadoFX problem that controllers doesn't work well in inherited view
     protected val chatAreaController: ChatAreaController by inject()
     protected val contactView: ContactView by inject()
