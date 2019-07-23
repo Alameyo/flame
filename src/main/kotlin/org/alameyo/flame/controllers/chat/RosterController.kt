@@ -1,18 +1,24 @@
 package org.alameyo.flame.controllers.chat
 
 import javafx.collections.ObservableSet
+import org.alameyo.flame.controllers.FlameController
 import org.alameyo.flame.controllers.JidOperations
 import org.alameyo.flame.models.FlameContactEntry
 import org.jivesoftware.smack.roster.Roster
+import org.jivesoftware.smack.roster.Roster.getInstanceFor
+import org.jivesoftware.smack.roster.Roster.SubscriptionMode.accept_all
 import org.jivesoftware.smack.roster.RosterEntry
 import org.jxmpp.jid.BareJid
 import tornadofx.*
 
-class RosterController(private val roster: Roster) : Controller(), JidOperations {
+class RosterController : Controller(), JidOperations {
+
+    private val flameController: FlameController by inject()
+    private val roster: Roster =  getInstanceFor(flameController.connection)
 
     fun entries(): ObservableSet<RosterEntry> {
         roster.reloadAndWait()
-        roster.subscriptionMode = Roster.SubscriptionMode.accept_all
+        roster.subscriptionMode = accept_all
         return roster.entries.observable()
     }
 

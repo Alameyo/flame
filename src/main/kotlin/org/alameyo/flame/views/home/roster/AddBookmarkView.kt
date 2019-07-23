@@ -10,7 +10,6 @@ import tornadofx.*
 
 class AddBookmarkView : View() {
 
-    private val flameController: FlameController by inject()
     private val bookmarksController: BookmarksController by inject()
     private val bookmarksView = find<BookmarksView>()
 
