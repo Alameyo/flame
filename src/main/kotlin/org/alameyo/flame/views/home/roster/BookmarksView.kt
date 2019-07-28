@@ -34,6 +34,7 @@ class BookmarksView : ContactsView() {
             ROSTER_VIEW -> runAsync { currentState = BOOKMARKS_VIEW } ui {
                 find<AddContactView>().replaceWith<AddBookmarkView>()
             }
+            BOOKMARKS_VIEW -> {}
         }
     }
 
